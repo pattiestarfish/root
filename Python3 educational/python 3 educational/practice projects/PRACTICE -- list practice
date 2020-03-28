@@ -1,0 +1,11 @@
+first_names = ['Ainsley', 'Ben', 'Chani', 'Depak']
+age = []
+age.append('42')
+all_ages = ['32', '41', '29'] + age
+print(all_ages)
+name_and_age = list(zip(first_names, all_ages))
+print(name_and_age)
+ids = range(4)
+
+print(ids[0],ids[1],ids[2],ids[3])
+print(ids[:4])

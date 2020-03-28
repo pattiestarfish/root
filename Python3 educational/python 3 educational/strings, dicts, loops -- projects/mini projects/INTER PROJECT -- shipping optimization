@@ -1,0 +1,58 @@
+#debug section
+#print('{0:.2f}'.format(B)) includes trailing zeroes
+
+#global variables 
+ground_flat=20
+premium_ground_flat=125
+  
+#functions  
+def ground_shipping_cost(weight):
+    if(weight<=2):
+      gppp1=1.5            #gppp=ground price per pound
+      GPPP=gppp1
+    elif(weight<=6) and (weight>2):
+      gppp2=3
+      GPPP=gppp2
+    elif(weight>6) and (weight<=10):
+      gppp3=4
+      GPPP=gppp3
+    elif(weight>10):
+      gppp4=4.75
+      GPPP=gppp4
+    return GPPP
+
+#calls previous function
+def total_ground_cost(weight):
+  grand_total = ground_shipping_cost(weight) * weight + ground_flat 
+  return grand_total
+
+#combines actions of functions 1+2 into 1
+def drone_shipping_cost(weight):
+  if(weight<=2):
+    dppp1=4.5              
+    DPPP=4.5
+  elif(weight<=6) and (weight>2):
+    dppp2=9
+    DPPP=dppp2
+  elif(weight>6) and (weight<=10):
+    dppp3=12
+    DPPP=dppp3
+  elif(weight>10):
+    dppp4=14.25
+    DPPP=dppp4
+  total_drone_cost=weight*DPPP
+  return total_drone_cost
+
+#main call
+def shipping_optimization(weight):
+  A=total_ground_cost(weight)
+  B=drone_shipping_cost(weight)
+  if(B <= A):
+    print("Drone shipment is the cheapest method. It costs $"+ ("{0:.2f}".format(B)) +" dollars to ship this "+ str(weight) +" pound package.")
+  elif(total_ground_cost(weight)>premium_ground_flat or drone_shipping_cost(weight)>premium_ground_flat):
+        print("Premium ground shipment is the cheapest method. It costs $"+ ('{0:.2f}'.format(premium_ground_flat)) +" dollars to ship this "+ str(weight) +" pound package.")
+  else:
+        print("Economy ground shipment is the cheapest method. It costs $"+ ("{0:.2f}".format(A)) +" dollars to ship this "+ str(weight) +" pound package.")
+
+#testing- should give $34.40
+shipping_optimization(4.8)

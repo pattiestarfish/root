@@ -1,0 +1,379 @@
+#Write your function here
+def divisible_by_ten(nums):
+  tens = [num for num in nums if num % 10 == 0] 
+  return len(tens)
+
+#Uncomment the line below when your function is done
+print(divisible_by_ten([20, 25, 30, 35, 40]))
+--------------------------------------------------------------
+#Write your function here
+def add_greetings(names):
+ greetings = [("Hello, " + name) for name in names]
+ return greetings
+
+#Uncomment the line below when your function is done
+print(add_greetings(["Owen", "Max", "Sophie"]))
+-------------------------------------------------------------
+#Write your function here
+def delete_starting_evens(lst):
+  index = True
+  filtered_lst = []
+  for i in range(0,len(lst)-1):
+    if((lst[i] % 2 == 0) and (index)):
+      index = False
+      print(i)
+      continue
+    elif(lst[i] % 2 == 0 or index):
+      filtered_lst.append(lst[i])
+      print('stage1')
+      return filtered_lst
+    else:
+      filtered_lst.append([lst[i]])
+      return filtered_lst
+ # filtered_lst = [lst[i] for i in range(0,len(lst)) if(lst[i] % 2 == 0 and index == 1)]:
+# filtered_lst = [lst[i] for i in range(0,len(lst)) if(lst[i] % 2 != 0)] 
+
+#Uncomment the lines below when your function is done
+print(delete_starting_evens([4, 8, 10, 11, 12, 15]))
+#print(delete_starting_evens([4, 8, 10]))
+-------------------------------------------------------------------
+#Write your function here
+def delete_starting_evens(lst):
+  Switch1 = False
+  i = 0
+  
+  for num in lst:
+    if num % 2 != 0:
+      i += 1
+      return lst
+    elif num % 2 == 0:
+      if Switch1 == False:
+        lst.pop(i)
+        i += 1
+        for num2 in lst: 
+          if num2 % 2 == 0:
+            lst.pop(i) 
+            i += 1
+          else: 
+            Switch1 = True
+            return lst
+        Switch1 = True
+      if Switch1 == True:
+        i+=1
+        return lst
+      
+#Uncomment the lines below when your function is done
+print(delete_starting_evens([4, 8, 10, 11, 12, 15]))
+print(delete_starting_evens([4, 8, 10]))
+-------------------------------------------------------------------
+#Write your function here
+def delete_starting_evens(lst):
+  Switch = False
+  i = 0
+  
+  for num in lst:
+    if Switch == False:
+      while(num % 2 == 0 and i < len(lst)):
+        lst.pop(i)
+        i += 1
+    elif Switch == True:
+      while i < len(lst):
+        i += 1
+        return lst
+    else:
+      while i < len(lst):
+        i += 1
+        return lst
+  return lst
+        
+#Uncomment the lines below when your function is done
+print(delete_starting_evens([4, 8, 10, 11, 12, 15]))
+#print(delete_starting_evens([4, 8, 10]))
+-----------------------
+#Write your function here
+def delete_starting_evens(lst):
+  Switch = False
+  i = 0
+  
+  
+  for num in lst:
+    while num % 2 == 0 and len(lst)>0:
+      if Switch == False:
+        lst.pop(0)
+      print('change_true')
+      Switch = True
+    while Switch == True and len(lst)>0:
+      return lst
+    if num % 2 != 0 and len(lst)>0:
+      return lst
+ ---------------------------------------
+ #Write your function here
+def delete_starting_evens(lst):
+  Switch = False
+  i = 1
+  list_length = (len(lst))
+  print(list_length)
+  
+  for num in lst:
+    
+    if num % 2 == 0 and Switch == True:
+      while i <= list_length:
+        i += 1
+        print(lst[0])
+        return lst[0]
+    elif num % 2 == 0 and Switch == False:
+      while(num % 2 == 0 and i <= list_length):
+        lst.pop(0)
+        i += 1
+        if num % 2 != 0:
+          Switch = True
+      return lst
+    else:
+      while i <= list_length:
+        i += 1
+        print(lst[0])
+        return lst[0]
+  return lst
+        
+#Uncomment the lines below when your function is done
+print(delete_starting_evens([4, 8, 10, 11, 12, 15]))
+print(delete_starting_evens([4, 8, 10]))
+---------------------------------------------
+///mostly working
+#Write your function here
+def delete_starting_evens(lst):
+  Switch = False
+  i = 1
+  
+  for num in lst:
+    if num % 2 == 0 and Switch == False:
+      while num % 2 == 0 and Switch == False and i <= len(lst):
+        lst.pop(0)
+        print('s1')
+        i += 1
+      Switch = True
+    elif num % 2 == 0 and Switch == True and i <= len(lst):
+      i += 1
+      return lst
+    elif num % 2 != 0:
+      i += 1
+      return lst
+  return lst
+    
+print(delete_starting_evens([4, 8, 10, 11, 12, 15]))
+print(delete_starting_evens([4, 8, 10]))
+---------------------
+#Write your function here
+def delete_starting_evens(lst):
+  Switch = False
+  i = 0
+  times_popped = 0
+  
+  for num in lst:
+    if num % 2 == 0 and Switch == False:
+      while num % 2 == 0 and Switch == False and i <= len(lst)-times_popped:
+        lst.pop(0)
+        times_popped += 1
+        i += 1
+      print('s2')
+      Switch = True
+    elif num % 2 == 0 and Switch == True and i <= len(lst)-times_popped:
+      i += 1
+      return lst
+    elif num % 2 != 0 and i <= len(lst):
+      i += 1
+      return lst
+  return lst
+    
+print(delete_starting_evens([4, 8, 10, 11, 12, 15]))
+print(delete_starting_evens([4, 8, 10]))
+---------------------
+#Write your function here
+def delete_starting_evens(lst):
+  Switch = False
+  i = 0
+  times_popped = 0
+  
+  for num in lst:
+    if num % 2 == 0 and Switch == False:
+      while num % 2 == 0 and Switch == False and i <= len(lst)-times_popped:
+        lst.pop(0)
+        times_popped += 1
+        print('s1')
+        i += 1
+      print('s2')
+      Switch = True
+      if num % 2 == 0 and Switch == True and i <= len(lst)-times_popped:
+        i += 1
+        print('s3')
+        return lst
+    elif num % 2 != 0:
+      i += 1
+      return lst
+  return lst
+    
+print(delete_starting_evens([4, 8, 10, 11, 12, 15]))
+print(delete_starting_evens([4, 8, 10]))
+----------------------
+#solves problem
+def delete_starting_evens(lst):
+  Switch = False
+  i = 1
+  
+  for num in lst:
+    if num % 2 == 0 and Switch == False:
+      while num % 2 == 0 and Switch == False and i <= len(lst):
+        lst.pop(0)
+        i += 1
+      Switch = True
+      if(Switch==True and len(lst) == 1):
+        lst.pop(0)
+    return lst
+    
+print(delete_starting_evens([4, 8, 10, 11, 12, 15]))
+print(delete_starting_evens([4, 8, 10]))
+-----------------------------------
+#Write your function here
+def odd_indices(lst):
+  new_lst = []
+#  print(list(range(1,len(lst),2))) 
+  for index in range(1,len(lst),2):
+    new_lst.append(lst[index])
+  return new_lst 
+
+print(odd_indices([4, 3, 7, 10, 11, -2]))
+--------------------------------
+#bugged
+#Write your function here
+def exponents(bases,powers):
+  lst_length = len(bases) * len(powers)
+  print(lst_length)
+  lst = list(range(lst_length))
+  temp=0
+  lst2=list([])
+  i=0
+  for base in bases:
+    for power in powers:
+      temp=base**power
+      lst2[i].append(temp)
+      i += 1
+      return lst2
+    
+
+#Uncomment the line below when your function is done
+print(exponents([2, 3, 4], [1, 2, 3]))
+---------------------
+#debugged
+#Write your function here
+def exponents(bases, powers):
+  lst=[]
+  temp = 0
+  
+  for base in bases:
+    for power in powers:
+      temp = base**power
+      lst.append(temp)
+  return lst
+      
+#Uncomment the line below when your function is done
+print(exponents([2, 3, 4], [1, 2, 3]))
+-------------------------------------------
+#Write your function here
+def larger_sum(lst1,lst2):
+  sum1 = 0
+  sum2 = 0
+  for num1 in lst1:
+    sum1 += num1
+  for num2 in lst2:
+    sum2 += num2
+  if (sum2 > sum1):
+    return lst2
+  else:
+    return lst1
+    
+print(larger_sum([1, 9, 5], [2, 3, 7]))
+-------------------------------------------------
+#debug
+#Write your function here
+def over_nine_thousand(lst):
+  sum = 0
+  i = 0
+
+  for num in lst:
+    if (len(lst)>0) and sum < 9000:          
+      sum += num
+    elif (len(lst)>0) and sum > 9000:
+      return sum 
+    elif (len(lst)>0) and sum < 9000:
+      return sum
+    else:
+      return []
+
+#Uncomment the line below when your function is done
+print(over_nine_thousand([8000, 900, 120, 5000])) 
+-----------------------------
+#debugged
+#Write your function here
+def over_nine_thousand(lst):
+  sum = 0
+  i = 0
+
+  for num in lst:
+    if(sum < 9000 and len(lst)>0):
+      sum += num    
+    elif(len(lst)==0):
+      return []
+  return sum
+    
+print(over_nine_thousand([8000, 900, 120, 5000]))
+--------------------------
+#Write your function here
+def max_num(nums):
+  temp = 0
+  sorted_nums = sorted(nums)
+  return sorted_nums.pop()
+
+#Uncomment the line below when your function is done
+print(max_num([50, -10, 0, 75, 20]))
+------------------
+#Write your function here
+def max_num(nums):
+  maximum = nums[0]
+  for number in nums:
+    if number > maximum:
+      maximum = number
+  return maximum
+
+#Uncomment the line below when your function is done
+print(max_num([50, -10, 0, 75, 20]))
+-------------------------------
+#Write your function here
+def same_values(lst1,lst2):
+  i = 0
+  lst3 = []
+  for num in lst1:
+    if(lst1[i] == lst2[i]):
+      lst3.append(i)
+      i += 1
+    else:
+      i += 1
+      continue
+  return lst3
+
+print(same_values([5, 1, -10, 3, 3], [5, 10, -10, 3, 5]))
+---------------------------
+#Write your function here
+def reversed_list(lst1,lst2):
+  list_lengths = len(lst1)
+  lst2.sort()
+  value = False
+  if (len(lst1) == 0 and len(lst2) == 0):
+      return True
+  for num in lst1:
+    if(lst1[:list_lengths] == lst2[:list_lengths]):
+      return True
+    else:
+      return value
+
+print(reversed_list([1, 2, 3], [3, 2, 1]))
+print(reversed_list([1, 5, 3], [3, 2, 1]))

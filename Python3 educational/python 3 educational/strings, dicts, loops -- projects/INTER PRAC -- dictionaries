@@ -1,0 +1,52 @@
+def sum_values(my_dictionary):
+  temp = 0
+  for value in my_dictionary:
+    for num in my_dictionary.values():
+      temp += num
+    return temp
+
+print(sum_values({"milk":5, "eggs":2, "flour": 3}))
+#prints 10
+print(sum_values({10:1, 100:2, 1000:3}))
+#prints 6
+-----------------
+def sum_even_keys(my_dictionary):
+  temp = 0; num = 0; i = 1
+  
+  for keys in my_dictionary.keys():
+    if keys % 2 == 0:
+      temp = my_dictionary[keys]
+      num += temp
+  return num
+
+print(sum_even_keys({1:5, 2:2, 3:3}))
+#prints 2
+print(sum_even_keys({10:1, 100:2, 1000:3}))
+#prints 6
+----------------------------------
+def add_ten(my_dictionary):
+  for key in my_dictionary.keys():
+    my_dictionary[key] += 10 
+  return my_dictionary
+
+print(add_ten({1:5, 2:2, 3:3}))
+#prints {1:15, 2:12, 3:13}
+print(add_ten({10:1, 100:2, 1000:3}))
+#prints {10:11, 100:12, 1000:13}
+-------------------------------------
+def count_first_letter(names):
+  last_initial = {}
+  temp = 0
+  for key in names.keys():
+    j = 0
+    temp = last_initial.get(key[0], 0)
+    for value in names[key]:
+      j += 1
+    last_initial[key[0]] = temp + j    
+  return last_initial
+
+
+print(count_first_letter({"Stark": ["Ned", "Robb", "Sansa"], "Snow" : ["Jon"], "Lannister": ["Jaime", "Cersei", "Tywin"]}))
+# should print {"S": 4, "L": 3}
+print(count_first_letter({"Stark": ["Ned", "Robb", "Sansa"], "Snow" : ["Jon"], "Sannister": ["Jaime", "Cersei", "Tywin"]}))
+# should print {"S": 7}

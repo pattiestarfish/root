@@ -1,0 +1,292 @@
+print(type(5))
+my_dict = {}
+print(type(my_dict))
+my_list = []
+print(type(my_list))
+-------------
+class Facade:
+  pass
+
+facade_1 = Facade()  
+facade_1_type = type(facade_1)
+print(facade_1_type)
+----------------
+class Grade:
+  minimum_passing = 65
+  
+student1 = Grade()
+print(student1.minimum_passing)
+------------------------
+class Rules:
+  
+  def washing_brushes(self):
+    print("Point bristles towards the basin while washing your brushes.")
+    
+Mary = Rules()
+Mary.washing_brushes()
+----------------------
+class Circle:
+  pi = 3.14
+  
+  def area(self, radius):
+    area = Circle.pi * int(radius) ** 2
+    return area
+  
+circle = Circle()
+pizza_area = circle.area(12/2)
+teaching_table_area = circle.area(36/2)
+round_room_area = circle.area(11460/2)
+-------------------------
+class Circle:
+  pi = 3.14
+  # Add constructor here:
+  def __init__(self, diameter):
+    print("New circle with diameter: {}".format(diameter))
+
+teaching_table = Circle(36)
+--------------------------
+class Store:
+  pass
+
+alternative_rocks = Store()
+isabelles_ices = Store()
+
+alternative_rocks.store_name = "Alternative Rocks"
+isabelles_ices.store_name = "Isabelle's Ices"
+-------------------------
+how_many_s = [{'s': False}, "sassafrass", 18, ["a", "c", "s", "d", "s"]]
+i = 0
+for s in how_many_s:
+  if(hasattr(how_many_s, 'count') == True and type(how_many_s[i]) != int):
+    print(list(how_many_s[i]).count('s'))
+    i += 1
+    continue
+  elif(type(how_many_s[i]) == int):
+    print(0)
+    i += 1
+    continue
+  else:
+    i += 1
+    continue
+    ---------v2--------------
+for element in how_many_s:
+  if hasattr(element, "count"):
+    print(element.count("s"))
+----------------------------
+class Circle:
+  pi = 3.14
+  def __init__(self, diameter):
+    print("Creating circle with diameter {d}".format(d=diameter))
+    # Add assignment for self.radius here:
+    self.radius = diameter/2 
+  def circumference(self):
+    return (2*self.pi*self.radius) 
+
+medium_pizza = Circle(12)
+teaching_table = Circle(36)
+round_room = Circle(11460)
+
+print(Circle.circumference(medium_pizza))
+print(Circle.circumference(teaching_table))
+print(Circle.circumference(round_room))   
+--------------
+print(dir(5))
+
+def this_function_is_an_object(self):
+  return self
+
+print(dir(this_function_is_an_object))
+-----------------------------------
+class Circle:
+  pi = 3.14
+  
+  def __init__(self, diameter):
+    self.radius = diameter / 2
+  
+  def area(self):
+    return self.pi * self.radius ** 2
+  
+  def circumference(self):
+    return self.pi * 2 * self.radius
+  
+  def __repr__(self):
+    return ("Circle with radius {radius}".format(radius=self.radius))
+  
+medium_pizza = Circle(12)
+teaching_table = Circle(36)
+round_room = Circle(11460)
+
+print(medium_pizza)
+print(teaching_table)
+print(round_room)
+-------------------------------------\
+class Student:
+  def __init__(self,name,year):
+    self.name = name
+    self.year = year
+    self.grades = []
+  
+  def add_grade(self, grade):
+    if type(grade) == Grade:
+      (self.grades).append(grade)
+    else:
+      return
+  
+  def print_grades(self):
+    for grade in self.grades:
+      print(grade.score)
+    return 
+
+  def __repr__(self):
+    return Grade.is_passing(self)
+
+class Grade:
+  minimum_passing = 65
+
+  def __init__(self, score):
+    self.score = score
+
+  def is_passing(self):
+    if self.score >= Grade.minimum_passing:
+      return "Pass"
+    else:
+      return "Fail"   
+
+#instanciation----------------------------
+roger = Student('Roger van der Weyden', 10)
+sandro = Student('Sandro Botticelli', 12)
+pieter = Student('Pieter Bruegel the Elder', 8)
+
+ace = Grade(100)
+pieter.add_grade(ace)
+print(pieter.name)
+print(pieter.year)
+print(pieter.print_grades())
+print(ace.is_passing())
+------------------------------------------------
+# Define your exception up here:
+
+
+# Update the class below to raise OutOfStock
+class CandleShop:
+  name = "Here's a Hot Tip: Buy Drip Candles"
+  def __init__(self, stock):
+    self.stock = stock
+    
+  def buy(self, color):
+    if(self.stock[color] == 0):
+      raise OutOfStock 
+    else:
+      self.stock[color] = self.stock[color] - 1
+
+class OutOfStock(Exception):
+  """
+  No Stock Left
+  """
+
+candle_shop = CandleShop({'blue': 6, 'red': 2, 'green': 0})
+
+# This should raise OutOfStock:
+try:
+  candle_shop.buy('blue')  
+  candle_shop.buy('green') 
+except OutOfStock:
+  print("Candles remaining: {color}".format(color=candle_shop.stock))
+  -----------------------------------------------------
+ class Message:
+  def __init__(self, sender, recipient, text):
+    self.sender = sender
+    self.recipient = recipient
+    self.text = text
+
+class User:
+  def __init__(self, username):
+    self.username = username
+    
+  def edit_message(self, message, new_text):
+    if message.sender == self.username:
+      message.text = new_text
+
+class Admin(User):
+  def edit_message(self, message, new_text):
+    message.text = new_text
+--------------------------------------------
+class PotatoSalad:
+  def __init__(self, potatoes, celery, onions):
+    self.potatoes = potatoes
+    self.celery = celery
+    self.onions = onions
+
+class SpecialPotatoSalad(PotatoSalad):
+  def __init__(self, potatoes, celery, onions):
+    super().__init__(potatoes, celery, onions)
+    self.raisins = 40  
+------------------------------------------------
+class InsurancePolicy:
+  def __init__(self, price_of_item):
+    self.price_of_insured_item = price_of_item
+
+class VehicleInsurance(InsurancePolicy):
+  def get_rate(self):
+    return self.price_of_insured_item * 0.001
+  
+class HomeInsurance(InsurancePolicy):
+  def get_rate(self):
+    return 0.00005 * self.price_of_insured_item
+------------------------------------------------
+a_list = [1, 18, 32, 12]
+a_dict = {'value': True}
+a_string = "Polymorphism is cool!"
+#number of items in list
+print(len(a_list))
+#number of keys in dict
+print(len(a_dict))
+#number of chars in string
+print(len(a_string))
+------------------------------------------------
+class Atom:
+  def __init__(self, label):
+    self.label = label
+  
+  def __repr__(self):
+    return self.label
+
+  def __add__(self, other):
+    return Molecule([self, other])
+
+
+class Molecule:
+  def __init__(self, atoms):
+    if type(atoms) is list:
+	    self.atoms = atoms
+  
+  def __repr__(self):
+    return str(self.atoms)
+
+      
+sodium = Atom("Na")
+print(sodium)
+chlorine = Atom("Cl")
+salt = Molecule([sodium, chlorine])
+print(salt)
+salt = sodium + chlorine
+print(salt)
+print("Na" + "Cl")
+
+----------------------------------------------
+class LawFirm:
+  def __init__(self, practice, lawyers):
+    self.practice = practice
+    self.lawyers = lawyers
+
+  def __len__(self):
+    return len(self.lawyers)
+
+  def __contains__(self, lawyer):
+    return lawyer in self.lawyers
+
+  def __repr__(self):
+    return ("Practice type: " + str(self.practice) + '\n'"Lawyers: " + str(self.lawyers))
+        
+d_and_p = LawFirm("Injury", ["Donelli", "Paderewski"])
+print(d_and_p)

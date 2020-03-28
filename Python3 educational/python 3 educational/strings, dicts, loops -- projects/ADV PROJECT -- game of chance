@@ -1,0 +1,22 @@
+#returns random num between range inclusive
+import random
+
+money = 100
+
+#Write your game of chance functions here
+def coin_flip(side, ante):
+  side = input("Heads or Tails: ")
+  flip = random.randint(1,2)
+  #if 1 == userinput Heads
+  if(side==1 and flip==1):
+    ante *= 2
+    return ante
+  elif(side==2 and flip==2):
+    ante *= 2
+    return ante
+  else:
+    return ante
+  print(ante)
+
+#Call your game of chance functions here
+coin_flip(1, 10)

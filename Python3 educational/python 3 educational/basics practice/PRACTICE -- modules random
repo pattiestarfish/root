@@ -1,0 +1,32 @@
+# Import random below:
+import random
+
+# Create random_list below:
+random_list = [random.randint(1,100) for num in range(101)]
+print(random_list)
+# Create randomer_number below:
+randomer_number = random.choice(random_list)
+
+# Print randomer_number below:
+print(randomer_number)
+
+i = 0
+for num in random_list:
+  if(num == 89):
+    print(random_list[i])
+    print(i)
+  i += 1
+---------------------------------
+import codecademylib3_seaborn
+import random
+# Add your code below:
+from matplotlib import pyplot as plt
+numbers_a = range(1,13)
+numbers_b = random.sample(range(0,1000), 12)
+plt.plot(numbers_a, numbers_b)
+plt.show()
+-------------------
+# Import library below:
+from library import always_three
+# Call your function below:
+print(always_three())

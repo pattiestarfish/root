@@ -1,0 +1,73 @@
+line_one = "The sky has given over"
+line_one_words = line_one.split()
+print(line_one_words)
+-------------------------------------------
+authors = "Audre Lorde, William Carlos Williams, Gabriela Mistral, Jean Toomer, An Qi, Walt Whitman, Shel Silverstein, Carmen Boullosa, Kamala Suraiyya, Langston Hughes, Adrienne Rich, Nikki Giovanni"
+author_last_names=[]
+author_names = authors.split(',')
+
+for names in author_names:
+  last_names = names.split()
+  author_last_names.append(last_names[-1])
+  
+print(author_last_names)
+-------------
+for word in spring_storm_text:
+  spring_storm_lines = spring_storm_text.split('\n')
+print(spring_storm_lines)
+---------------------
+love_maybe_lines = ['Always    ', '     in the middle of our bloodiest battles  ', 'you lay down your arms', '           like flowering mines    ','\n' ,'   to conquer me home.    ']
+love_maybe_lines_stripped=[]
+for line in love_maybe_lines:
+  love_maybe_lines_strip = line.strip()
+  love_maybe_lines_stripped.append(love_maybe_lines_strip)
+love_maybe_full = "\n".join(love_maybe_lines_stripped)
+print(love_maybe_full)
+------------------------------
+god_wills_it_line_one = "The very earth will disown you"
+disown_placement = god_wills_it_line_one.find('disown')
+----------------------------------
+def poem_title_card(poet, title):
+  return "The poem \"{}\" is written by {}.".format(title, poet)
+------------------------------------
+author = "Shel Silverstein"
+title = "My Beard"
+original_work = "Where the Sidewalk Ends"
+publishing_date = "1974"
+
+def poem_description(publishing_date, author, title, original_work):
+  poem_desc = "The poem {title} by {author} was originally published in {original_work} in {publishing_date}.".format(publishing_date=publishing_date, author=author, title=title, original_work=original_work)
+  return poem_desc
+
+my_beard_description=poem_description(publishing_date, author, title, original_work)
+
+print(my_beard_description)
+------------------------------------------------------
+highlighted_poems = "Afterimages:Audre Lorde:1997,  The Shadow:William Carlos Williams:1915, Ecstasy:Gabriela Mistral:1925,   Georgia Dusk:Jean Toomer:1923,   Parting Before Daybreak:An Qi:2014, The Untold Want:Walt Whitman:1871, Mr. Grumpledump's Song:Shel Silverstein:2004, Angel Sound Mexico City:Carmen Boullosa:2013, In Love:Kamala Suraiyya:1965, Dream Variations:Langston Hughes:1994, Dreamwood:Adrienne Rich:1987"
+
+highlighted_poems_stripped = []
+highlighted_poems_details = []
+titles = []
+poets = []
+dates = []
+i = 0
+
+for poems in highlighted_poems:
+  highlighted_poems_list = highlighted_poems.split(',')
+  
+for h_poems in highlighted_poems_list:
+  highlighted_poems_stripped.append(h_poems.strip())
+print(highlighted_poems_stripped)   
+for h_s_poems in highlighted_poems_stripped:
+  highlighted_poems_details.append(h_s_poems.split(':'))
+print(highlighted_poems_details)
+  
+for details in highlighted_poems_details:
+  titles.append(details[0])
+  poets.append(details[1])
+  dates.append(details[2])
+
+statement = ""
+for k in range(len(titles)):
+  statement = "The poem \"{titles}\" was published by {poets} in {dates}\".".format(titles=titles[k],poets= poets[k], dates=dates[k])
+  print(statement)

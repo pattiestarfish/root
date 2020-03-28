@@ -1,0 +1,24 @@
+toppings = ['pepperoni','pineapple','cheese','sausage','olives','anchovies','mushrooms']
+
+prices = [2,6,1,3,2,7,2]
+num_toppings=len(toppings)
+print("We sell " + str(num_toppings) + " different kinds of pizza!")
+
+pizzas=list(zip(prices,toppings))
+print(pizzas)
+
+#created 2 seperate lists, new sorted
+sorted_pizzas=sorted(pizzas)
+
+cheapest_pizza=sorted_pizzas[0]
+print(sorted_pizzas[0])
+
+priciest_pizza=(sorted_pizzas[-1])
+print(sorted_pizzas[-1])
+
+three_cheapest=sorted_pizzas[0:3]
+print(three_cheapest)
+
+#number of $2 slices
+num_two_dollar_slices=prices.count(2)
+print("Number of 2 dollar slices: " + str(num_two_dollar_slices))

@@ -1,0 +1,18 @@
+Employee,Relocation Date,Relocation State,Relocation State
+Bak,Jon,3/1/2019,New York
+Do,Liz,2/1/2019,Washington
+As,Rich,None,None
+Com,Hi,None,None
+Dos,Cod,None,None
+Bana,Straw,None,None
+Oppi,Jax,2/1/2019,Florida
+Ton,Qi,None,None
+Riz,Jeii,None,None
+Aso,He,None,None
+,,,
+,,,
+All other employees stayed in CA. Easy to reconcile. ,,,
+,,,
+,,,
+Need to create something like: ,,,
+"If Liz payroll date is before relocation date 2/1/2019, then add her employer cost to CA. If Liz payroll date is after relocation date, then sum to WA. ",,,

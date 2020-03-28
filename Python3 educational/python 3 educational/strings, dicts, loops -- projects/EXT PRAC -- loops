@@ -1,0 +1,72 @@
+students_period_A = ["Alex", "Briana", "Cheri", "Daniele"]
+students_period_B = ["Dora", "Minerva", "Alexa", "Obie"]
+index=0
+for student in students_period_A:     
+  if(len(students_period_A)>=index):
+    students_period_B.append(students_period_A[index])
+    print(student)
+    print(students_period_B)
+    index+=1
+  else:
+    print(list(students_period_B))
+-------------------------------------------------------------------
+dog_breeds_available_for_adoption = ['french_bulldog', 'dalmatian', 'shihtzu', 'poodle', 'collie']
+dog_breed_I_want = 'dalmatian'
+
+for breeds in dog_breeds_available_for_adoption:
+  print(breeds)
+  if(breeds==dog_breed_I_want):
+    print("They have the dog I want!")
+    break
+---------------------------------------------------------------------
+ages = [12, 38, 34, 26, 21, 19, 67, 41, 17]
+
+for age in ages:
+  if (age<21):
+    continue
+  print(age)
+----------------------------------------------------------------------
+all_students = ["Alex", "Briana", "Cheri", "Daniele", "Dora", "Minerva", "Alexa", "Obie", "Arius", "Loki"]
+students_in_poetry = []
+index=0
+#print(len(students_in_poetry))
+while(len(students_in_poetry)<6):
+  students_in_poetry.append(all_students.pop())
+  index+=1
+print(students_in_poetry)
+----------------------------------------------------------------------
+#need for loop within for loop to iterate through list within lists
+sales_data = [[12, 17, 22], [2, 10, 3], [5, 12, 13]]
+scoops_sold=0
+
+for sales in sales_data:
+#  for data in sales:
+    print(sales)
+  
+for sales in sales_data:
+  for data in sales:
+    print(data)
+    scoops_sold+=data
+    
+print(scoops_sold)
+----------------------------------------------------------------------------
+usernames = [word for word in words if word[0] == '@']
+
+heights = [161, 164, 156, 144, 158, 170, 163, 163, 157]
+can_ride_coaster = [height for height in heights if height>161]
+print(can_ride_coaster)
+
+celsius = [0, 10, 15, 32, -5, 27, 3]
+fahrenheit = [(temp_c * 9/5 + 32) for temp_c in celsius]  
+print(fahrenheit)
+-----------------------------------------------------------------------------
+squares = []
+single_digits = range(10)
+
+for num in single_digits:
+  print(num)
+  squares.append(num**2)  
+print(squares)
+
+cubes = [(nums**3) for nums in single_digits]
+print(cubes)

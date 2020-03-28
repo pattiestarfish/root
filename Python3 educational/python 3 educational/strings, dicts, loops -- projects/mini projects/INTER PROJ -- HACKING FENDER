@@ -1,0 +1,60 @@
+import csv
+import json
+compromised_users = []
+password_row = []
+slash_null_sig = """ _  _     ___   __  ____             
+/ )( \   / __) /  \(_  _)            
+) \/ (  ( (_ \(  O ) )(              
+\____/   \___/ \__/ (__)             
+ _  _   __    ___  __ _  ____  ____  
+/ )( \ / _\  / __)(  / )(  __)(    \ 
+) __ (/    \( (__  )  (  ) _)  ) D ( 
+\_)(_/\_/\_/ \___)(__\_)(____)(____/ 
+        ____  __     __   ____  _  _ 
+ ___   / ___)(  )   / _\ / ___)/ )( \
+(___)  \___ \/ (_/\/    \\___ \) __ (
+       (____/\____/\_/\_/(____/\_)(_/
+ __ _  _  _  __    __                
+(  ( \/ )( \(  )  (  )               
+/    /) \/ (/ (_/\/ (_/\             
+\_)__)\____/\____/\____/
+"""
+#with open("passwords.csv", newline="") as password_file:
+#  print(password_file.read())
+
+with open("passwords.csv", newline="") as password_file:
+  password_csv = csv.DictReader(password_file)
+  for password in password_csv:
+    password_row.append(password)
+    compromised_users.append(password['Username'])
+#  print(password_row)
+#  print(compromised_users)
+with open("compromised_users.txt", "w") as compromised_user_file:
+#  fieldnames= ["User", "Password"]
+#  compromised_user_file = csv.DictWriter(compromised_user_file, fieldnames=fieldnames)
+  for user in compromised_users:
+    compromised_user_file.write(user+'\n')
+ 
+#testing file contents
+#with open("compromised_users.txt", "r") as compromised_user_file:
+#  print(compromised_user_file.read())
+
+with open('boss_message.json', 'w') as boss_message:
+  boss_message_dict = {
+    'recipient': 'The Boss',
+    'message': 'Mission Success'
+  }
+  json.dump(boss_message_dict, boss_message)
+#with open('boss_message.json', 'r') as boss_message:
+#  print(boss_message.read())
+
+with open("new_passwords.csv", 'w') as new_passwords_obj:
+  new_passwords_obj.write(slash_null_sig)
+  password_row = ""
+  password_row = slash_null_sig
+ # password_row.write(new_passwords.csv)
+with open("new_passwords.csv", 'r') as new_passwords_obj:
+#  print(new_passwords_obj.read())
+  
+  print(password_row)
+  

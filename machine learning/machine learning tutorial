@@ -1,0 +1,98 @@
+Types of Machine Learning (ML)
+2 main classes of algorithms in ML: Surpervised vs Unsupervised learning
+Supervised learning: explitcitly tell program what to expect output to be, and let them learn the rules that produce expected outputs from given inputs
+- commonly ex: imagine classification --> shjoshow program thousands of examples of pictures of labels describing them
+*data is labeled and program learns to predict output from input data
+
+Unsupervised learning: program analyzes data it encounters and tries to determine its own patterns and group data in meaningful ways
+*data is unlabeled and program learns to recognize inherent structure in input data
+
+***Linear regression model***
+from sklearn.linear_model import LinearRegression
+
+your_model = LinearRegression()
+Fit {
+your_model.fit(x_training_data, y_training_data)
+}
+Predict{
+predictions = your_model.predict(your_x_data)
+}
+.coef, .intercept, .score
+--------------------------------
+under supervised and unsupervised learning, we can implement further distinguishments as
+Classification vs Regression
+regression predicts continuous outputs
+classification predicts discrete labels, typically uses binary classification
+multi level classification requires segmentation, categorization, and sentiment analysis
+
+Normalization: when comparing datasets, feature with larger dataset will dominante (ie comparing houses age vs how many rooms it has)
+-normalization makes each datapoint the same scale so it carries the same weight
+max-min normalization: takes (value-min)/(max-min), downside does not handle outliers well
+z-score normalization(avoids outlier problems, but returns different scale): value-(mean value)/(standard deviation)
+ --> variables exactly equal to mean will equal 0, <0 means below average
+
+Training vs Validation vs Test sets
+-learning will vary based upon which algorithm is used
+linear regression --> line of best fit
+K-nearest neighbors: points in training set are points that could be neighbors
+N-Fold Cross-Validation: For small datasets, can perform return iteration of cross-validation by performing entire
+testing/training process N times and finding the averaging the accuracy
+#----------------------------------------------------------------------------------------------------------
+KNN classification algorithm
+3 steps:
+1. Normalize the data
+2. Find the K nearest neighbors
+3. Classify new point based on neighbors
+
+*main problem of machine learning algorithms: overfitting(due to relying too heavily on training data(data does not always behave the same))
+-however, underfitting can occur when k too large (>100), so trends are not accurately represented
+-overfitting occurs when your dataset does not have enough neighbors, single outlier can drastically determine outcome
+validation accuracy changes as k changes, accuracy is lower due to overfitting
+
+#---------------------------------------------------------------------------------------------------------
+Logistic regression- supervised machine learning algorithm that predicts continuous probability on [0,1], classification
+spam emails: if predicted probability is <= 0.5, classified as spam >= 0.5 == ham(negative class, label 0)
+-logistic regression eliminates limiter in  linear regression (inaccuracy for low and high values)
+Log-Odds: logistic regression, similarly to linear reg also multiplies feature coefficients and feature values and adds intercepts,
+but instead of returning prediction, returns log-odds(probability of sample belonging to positive class)
+
+Odds of passing = P(event occurring)/P(event not occurring) = 0.7/0.3 = log(2.33333) = ~ 0.847
+np.dot() = dot product, parameters vector (features,  coefficients) + intercept
+sigmoid curve eq: h(z) = 1/(1 + np.exp(-z))
+
+once classification probability is calculated, need to make decision which class sample belongs to using
+classification threshold (<=0.5 vs >0.5)
+- may want to increase threshold sensitivity depending on dataset (cancer may want to lower to 0.2-0.3)
+
+#---------
+Evaluating machine learning models -- loss/cost functions
+- calculates loss for each dat a sample (residual) and averages loss across all samples
+
+#--------------------------------------------------------
+Decision Trees- another form of supervised learning models
+- identifies patterns within features of data points, splits data multiple times based on diff features
+- decision point when to stop splitting tree, if an unlabeled point reaches that leaf, considered a majority label
+how do you know which tree sorting method is best?
+calculate information gain of splitting data on certain feature- IG measures difference in impurity of data before and after split
+-eg. dataset with impurity of 0.5, when split into 3 subgroups can result in 0, 0.375, 0 for IG of 0.125
+gini impurity for set of data points- 1 minus percentage of each label squared, 0 for only 1 class
+
+weighted info gain: much higher confidence levels in high sample sizes
+
+Recursive trees: repeat algorithm to find best feature and split data based on that feature until
+no additional recursions results in any information gain
+-classifying new data: via recursion and tree nodes
+- base case is reached when dividing any additional internal node leads to 0 gain
+
+decision tree limiations: aren't always globally optimal; a split may have negative effects further down
+- can potentially overfit data, solution to prune the tree
+- usually search for tree that will result in largest info gain instantaneously
+
+#------------------------------------------------------
+Random forest- forest of decision trees created through bagging process
+- bagging randomly selects a subset of total datapoints and splits them into decision trees(at random, may pick multiple of same row)
+- can further randomize after initial split by only choosing from subset to further split (rule of thumb is to split among sqrt total sample size)
+another solution to minimize overfitting in decision trees
+ensemble MI technique
+-when new data point is given, given to every decision tree within forest for classification
+    - most popular classification is returned

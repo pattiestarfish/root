@@ -1,0 +1,104 @@
+first_name = "Rodrigo"
+last_name = "Villanueva"
+
+new_account = last_name[:5]
+print(new_account)
+
+temp_password = last_name[2:6]
+print(temp_password)
+------------------------------------------------------------
+first_name = "Julie"
+last_name = "Blevins"
+
+def account_generator(first_name, last_name):
+  new_account = first_name[0:3]+last_name[0:3]
+  return new_account
+
+new_account = (account_generator(first_name, last_name))
+print(new_account)
+--------------------
+company_motto = "Copeland's Corporate Company helps you capably cope with the constant cacophony of daily life"
+
+second_to_last = company_motto[-2]
+final_word = company_motto[-4:]
+----------------------------------------------------------
+first_name = "Bob"
+last_name = "Daily"
+
+fixed_first_name = "R" + first_name[1:len(first_name)] 
+---------------------------------
+#len()
+def get_length(string1):
+  i = 0
+  for letter in string1:
+    print(letter)
+    i += 1
+  return i
+
+print(get_length('hello'))
+----------------
+def letter_check(word,letter):
+  for char in word:
+    if char == letter:
+      return True
+  return False
+---------------------------------
+def contains(big_string,little_string):
+  return little_string in big_string
+
+def common_letters(string_one,string_two):
+  lst=[]
+  for char1 in string_one:
+    if (char1 in string_two) and not (char1 in lst):
+      lst.append(char1)
+  return lst
+
+print(common_letters("manhattan", "san francisco"))
+-----------------------
+def username_generator(first_name, last_name):
+  username = first_name[0:3] + last_name[0:4]
+  return username
+
+def password_generator(username):
+  password = ""
+  for char in range(0,len(username)):
+    password = password + username[char-1]
+  return password
+
+print(username_generator("Abe", "Simpson"))
+print(password_generator("AbeSimp"))
+---------------------------------------
+letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+def unique_english_letters(word):
+  i = 0
+  for char in word:
+    if(word.count(char) >= 1):
+      i += 1
+      word = word.replace(char,'*')
+  return i
+
+print(unique_english_letters("mississippi"))
+#prints 4
+print(unique_english_letters("Apple"))
+#prints 4
+---------------------------------------
+def count_char_x(word, x):
+  temp = ''
+  temp = word.count(x)
+  return temp
+
+print(count_char_x("mississippi", "s"))
+#prints 4
+print(count_char_x("mississippi", "m"))
+#prints 1
+--------------------------------------------
+def count_multi_char_x(word, x):
+  temp = []
+  temp = word.split(x)
+  return (len(temp)-1)
+
+print(count_multi_char_x("mississippi", "iss"))
+#prints 2
+print(count_multi_char_x("apple", "pp"))
+#prints 1

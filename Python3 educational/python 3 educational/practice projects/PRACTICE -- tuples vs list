@@ -1,0 +1,8 @@
+#tuple is data structure that allows us to immutably store multiple pieces of information
+my_info = ('Pat', 24, 'Programmer')
+
+#unpacking tuple //stores elements of tuples into  new variables
+name, age, occupation = my_info
+
+#one element tuples require trailing comma
+one_elemnt_tuple=(4,)
