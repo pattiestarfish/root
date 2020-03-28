@@ -96,3 +96,13 @@ another solution to minimize overfitting in decision trees
 ensemble MI technique
 -when new data point is given, given to every decision tree within forest for classification
     - most popular classification is returned
+
+#----------------------------------------------------
+Clustering- finds structure in unlabeled data by identifying similar groups/clusters
+K-Means Clustering- tries to address how many groups we choose and how to define similarity
+- K refers to number of clusters we expect to find, means refers to average distance of data to each cluster(centroid, try to minimize)
+iterative approach:
+1. place k random centroids for initial clusters
+2. assign data samples to nearest centroid
+3. update centroids based on newly assigned samples
+repeat steps 2 and 3 until achieve convergence, when points don't move between clusters and centroids stabilize
