@@ -106,3 +106,11 @@ iterative approach:
 2. assign data samples to nearest centroid
 3. update centroids based on newly assigned samples
 repeat steps 2 and 3 until achieve convergence, when points don't move between clusters and centroids stabilize
+
+#-----------------------------------------------------
+K-Means++
+- addresses K-means clustering issue where randomly initializing centroids may result in suboptimal clusters
+builds off same 3 steps for K-Means, only adds additional steps to step 1
+1.1 1st cluster centroid picked randomly from data points
+1.2 for remaining data points, distance from point to nearest cluster centroid calculated
+1.3 next cluster centroid picked according to probability proportional to distance of each point to its nearest centroid
