@@ -133,3 +133,18 @@ intercept = -self.weights[2]/self.weights[1]
 Neural networks
 - single perceptrons can only predict linearly separable variables (single line)
 - require multiple perceptrons known as neural networks to analyze multifeature data
+
+#-------------------------------------------------------------
+Minimax algorithm- recursive algorithm optimizing moves for 2 player games
+evaluating strength of leaves:
+- if player X wins, strenght of leaf = 1, elif O wins leaf = -1, tie=0
+- find min or max value depending on player's turn; build from bottom up (leaf-->child-->parent nodes)
+
+*copying elements in Python: since pyth objects are saved in memory, variables point to location in memory
+- if 2 variables point to same object (ie new_board = my_board), changing var of 1 object changes value in other
+- use new_board = deepcopy(my_board) to store copy into new place in memory
+algorithm:
+- first check current game state
+- then check whether we are maximizing or minimizing function (player's turn)
+* for more advanced trees that require higher computational power, utilize hard limits to limit algorithm
+or prune the tree to limit useless traversions
