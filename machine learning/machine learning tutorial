@@ -114,3 +114,22 @@ builds off same 3 steps for K-Means, only adds additional steps to step 1
 1.1 1st cluster centroid picked randomly from data points
 1.2 for remaining data points, distance from point to nearest cluster centroid calculated
 1.3 next cluster centroid picked according to probability proportional to distance of each point to its nearest centroid
+
+#--------------------------------------------------------
+Perceptron- ability tosense stimuli and convert sensory inputs into meaningful outputs
+- artificial neuron that can make simple decisions
+converting inputs and weights to outputs requires 2 steps:
+1. find weighted sum (input)(weight) + .... + ____
+2. constrain wsum to produce desired output using activation function
+- designed to transform weighted sum into desired/constrained output
+- many types, one way is sign activation +1 or -1
+3. Train model until training error converages/is minimized
+- cannot only alter 1 variable, must alter combination of weights
+4. Visualizing perceptron's training process
+slope = -self.weights[0]/self.weights[1]
+intercept = -self.weights[2]/self.weights[1]
+5. theoretically, perceptron should predict all labels correctly once they have found a linear classifier/decision boundary(straight line)
+
+Neural networks
+- single perceptrons can only predict linearly separable variables (single line)
+- require multiple perceptrons known as neural networks to analyze multifeature data
