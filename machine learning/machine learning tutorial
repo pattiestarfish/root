@@ -148,3 +148,10 @@ algorithm:
 - then check whether we are maximizing or minimizing function (player's turn)
 * for more advanced trees that require higher computational power, utilize hard limits to limit algorithm
 or prune the tree to limit useless traversions
+- evaluation functions user defined, programmer defined
+
+Alpha-Beta pruning:
+-ignores parts of tree that are dead ends
+if parent node has value of 5 and child node has value 8 but we want to minimize, can ignore child
+alpha keeps track of min score maximizing player can get, begins at -inf and is constantly updated as min score increases
+if alpha >= beta, can ignore node's children
