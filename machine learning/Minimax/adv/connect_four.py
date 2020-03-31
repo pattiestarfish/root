@@ -88,7 +88,7 @@ def has_won(board, symbol):
 def game_is_over(board):
   return has_won(board, "X") or has_won(board, "O") or len(available_moves(board)) == 0
 
-def evaluate_board(board):
+def codecademy_evaluate_board(board):
     if has_won(board, "X"):
       return float("Inf")
     elif has_won(board, "O"):
@@ -197,9 +197,9 @@ def count_streaks(board, symbol):
             count += num_in_streak
     return count
 
-def minimax(input_board, is_maximizing, depth, alpha, beta):
+def minimax(input_board, is_maximizing, depth, alpha, beta, eval_function):
   if game_is_over(input_board) or depth == 0:
-        return [evaluate_board(input_board), ""]
+        return [eval_function(input_board), ""]
   if is_maximizing:
     best_value = -float("Inf")
     moves = available_moves(input_board)
@@ -208,7 +208,7 @@ def minimax(input_board, is_maximizing, depth, alpha, beta):
     for move in moves:
       new_board = deepcopy(input_board)
       select_space(new_board, move, "X")
-      hypothetical_value = minimax(new_board, False, depth - 1, alpha, beta)[0]
+      hypothetical_value = minimax(new_board, False, depth - 1, alpha, beta, eval_function)[0]
       if hypothetical_value > best_value:
         best_value = hypothetical_value
         best_move = move
@@ -224,7 +224,7 @@ def minimax(input_board, is_maximizing, depth, alpha, beta):
     for move in moves:
       new_board = deepcopy(input_board)
       select_space(new_board, move, "O")
-      hypothetical_value = minimax(new_board, True, depth - 1, alpha, beta)[0]
+      hypothetical_value = minimax(new_board, True, depth - 1, alpha, beta, eval_function)[0]
       if hypothetical_value < best_value:
         best_value = hypothetical_value
         best_move = move
@@ -232,7 +232,6 @@ def minimax(input_board, is_maximizing, depth, alpha, beta):
       if alpha >= beta:
         break
     return [best_value, best_move]
-
 
 def play_game(ai):
     BOARDWIDTH = 7
@@ -260,88 +259,8 @@ def play_game(ai):
           print("Computer chose: ", result[1])
           select_space(board, result[1], "O")
 
-def two_ai_game(ai1, ai2):
-    BOARDWIDTH = 7
-    BOARDHEIGHT = 6
-    my_board = []
-    for x in range(BOARDWIDTH):
-      my_board.append([' '] * BOARDHEIGHT)
-    while not game_is_over(my_board):
-      result = minimax(my_board, True, ai1, -float("Inf"), float("Inf"))
-      print( "X Turn\nX selected ", result[1])
-      print(result[1])
-      select_space(my_board, result[1], "X")
-      print_board(my_board)
-
-      if not game_is_over(my_board):
-        result = minimax(my_board, False, ai2, -float("Inf"), float("Inf"))
-        print( "O Turn\nO selected ", result[1])
-        print(result[1])
-        select_space(my_board, result[1], "O")
-        print_board(my_board)
-    if has_won(my_board, "X"):
-        print("X won!")
-    elif has_won(my_board, "O"):
-        print("O won!")
-    else:
-        print("It's a tie!")
-
-#two_ai_game(3, 4)
-#play_game(5)
-
-
-def tree_size(board, turn):
-    if game_is_over(board):
-        return 1
-    count = 1
-    for move in available_moves(board):
-        new_board = deepcopy(board)
-        if turn == "X":
-            select_space(new_board, move, "X")
-            count += tree_size(new_board, "O")
-        else:
-            select_space(new_board, move, "O")
-            count += tree_size(new_board, "X")
-    return count
-
-
 def make_board():
     new_game = []
     for x in range(7):
         new_game.append([' '] * 6)
     return new_game
-
-
-half_done = []
-for x in range(7):
-  half_done.append([' '] * 6)
-
-for i in range(6):
-    if i % 2 == 0:
-        select_space(half_done, 1, "X")
-    else:
-        select_space(half_done, 1, "O")
-
-for i in range(6):
-    if i % 2 == 0:
-        select_space(half_done, 7, "X")
-    else:
-        select_space(half_done, 7, "O")
-
-for i in range(6):
-    if i % 2 == 0:
-        select_space(half_done, 3, "X")
-    else:
-        select_space(half_done, 3, "O")
-
-for i in range(6):
-    if i % 2 == 0:
-        select_space(half_done, 2, "X")
-    else:
-        select_space(half_done, 2, "O")
-
-for i in range(5):
-    if i % 2 == 0:
-        select_space(half_done, 6, "X")
-    else:
-        select_space(half_done, 6, "O")

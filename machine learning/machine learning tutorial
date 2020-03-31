@@ -148,7 +148,7 @@ algorithm:
 - then check whether we are maximizing or minimizing function (player's turn)
 * for more advanced trees that require higher computational power, utilize hard limits to limit algorithm
 or prune the tree to limit useless traversions
-- evaluation functions user defined, programmer defined
+- evaluation functions user defined, programmer defined, based on understanding of GAME
 
 Alpha-Beta pruning:
 -ignores parts of tree that are dead ends
