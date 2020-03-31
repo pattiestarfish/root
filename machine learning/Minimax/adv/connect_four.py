@@ -12,14 +12,11 @@ def print_board(board):
     print('+---+' + ('---+' * (len(board) - 1)))
 
     for y in range(len(board[0])):
-        print('|   |' + ('   |' * (len(board) - 1)))
 
         print('|', end='')
         for x in range(len(board)):
             print(' %s |' % board[x][y], end='')
         print()
-
-        print('|   |' + ('   |' * (len(board) - 1)))
 
         print('+---+' + ('---+' * (len(board) - 1)))
 
@@ -88,15 +85,204 @@ def has_won(board, symbol):
 def game_is_over(board):
   return has_won(board, "X") or has_won(board, "O") or len(available_moves(board)) == 0
 
-def codecademy_evaluate_board(board):
-    if has_won(board, "X"):
-      return float("Inf")
-    elif has_won(board, "O"):
-      return -float("Inf")
+
+#updated function with support to search in 6 out of 8 directions, added weighting
+#doesn't count streaks that are blocked off/impossible for 4 in row
+def evaluate_board(board):
+    if has_won(board, 'X'):
+        return float("Inf")
+    elif has_won(board, 'O'):
+        return -float("Inf")
     else:
-      x_streaks = count_streaks(board, "X")
-      o_streaks = count_streaks(board, "O")
-      return x_streaks - o_streaks
+        x_two_streak = 0
+        x_three_streak = 0
+        o_two_streak = 0
+        o_three_streak = 0
+        weighted_x_streaks = 0
+        weighted_o_streaks = 0
+
+        #horizonatally checks for 2 and 3 in a rows from L-->R (skips last 3 columns)
+        for col in range(len(board) - 3):
+            for row in range(len(board[0])):
+                if board[col][row] == 'X' and board[col + 1][row] == 'X':
+                    if board[col + 2][row] != 'O' and board[col + 3][row] != 'O':
+                        if board[col + 2][row] == 'X':
+                            x_three_streak += 1
+                        elif col > 0 and board[col][row] == 'X':
+                            continue
+                        else:
+                            x_two_streak += 1
+                elif board[col][row] == 'O' and board[col + 1][row] == 'O':
+                    if board[col + 2][row] != 'X' and board[col + 3][row] != 'X':
+                        if board[col + 2][row] == 'O':
+                            o_three_streak += 1
+                        elif col > 0 and board[col][row] == 'O':
+                            continue
+                        else:
+                            o_two_streak += 1
+        #horizontally checks for 2 and 3 in a rows from R --> L, skips first 3 col
+        for col in range(len(board) - 3):
+            j = len(board)-1
+            for row in range(len(board[0])):
+                if board[j - col][row] == 'X' and board[j - col - 1][row] == 'X':
+                    if board[j - col - 2][row] != 'O' and board[j - col - 3][row] != 'O':
+                        if board[j - col - 2][row] == 'X':
+                            x_three_streak += 1
+                        elif col > 0 and board[j - col][row] == 'X':
+                            continue
+                        else:
+                            x_two_streak += 1
+                elif board[j - col][row] == 'O' and board[j - col - 1][row] == 'O':
+                    if board[j - col - 2][row] != 'X' and board[j - col - 3][row] != 'X':
+                        if board[j - col - 2][row] == 'O':
+                            o_three_streak += 1
+                        elif col > 0 and board[j - col][row] == 'O':
+                            continue
+                        else:
+                            o_two_streak += 1
+
+        #vertically checks for 2 and 3 in columns from Bot-->Top
+        for col in range(len(board)):
+            for row in range(len(board[0]) - 3):
+                if board[col][row] == 'X' and board[col][row + 1] == 'X':
+                    if board[col][row + 2] != 'O' and board[col][row + 3] != 'O':
+                        if board[col][row + 2] == 'X':
+                            x_three_streak += 1
+                        elif row > 0 and board[col][row] == 'X':
+                            continue
+                        else:
+                            x_two_streak += 1
+                elif board[col][row] == 'O' and board[col][row + 1] == 'O':
+                    if board[col][row + 2] != 'X' and board[col][row + 3] != 'X':
+                        if board[col][row + 2] == 'O':
+                            o_three_streak += 1
+                        elif row > 0 and board[col][row] == 'O':
+                            continue
+                        else:
+                            o_two_streak += 1
+        #vertically checks for 2 and 3 in columns from Top --> Bot
+        for col in range(len(board)):
+            i = len(board[0])-1
+            for row in range(len(board[0]) - 3):
+                if board[col][i - row] == 'X' and board[col][i - row - 1] == 'X':
+                    if board[col][i - row - 2] != 'O' and board[col][i - row - 3] != 'O':
+                        if board[col][i - row - 2] == 'X':
+                            x_three_streak += 1
+                        elif row > 0 and board[col][i - row] == 'X':
+                            continue
+                        else:
+                            x_two_streak += 1
+                elif board[col][i - row] == 'O' and board[col][i - row - 1] == 'O':
+                    if board[col][i - row - 2] != 'X' and board[col][i - row - 3] != 'X':
+                        if board[col][i - row - 2] == 'O':
+                            o_three_streak += 1
+                        elif row > 0 and board[col][i - row] == 'O':
+                            continue
+                        else:
+                            o_two_streak += 1
+
+        #diagonally finds X streaks Topleft to Botright
+        for col in range(len(board) - 3):
+            for row in range(len(board[0]) - 4):
+                if board[col][row] == 'X' and board[col + 1][row + 1] == 'X':
+                    if board[col + 2][row + 2] != 'O' and board[col + 3][row + 3] != 'O':
+                        if board[col + 2][row + 2] == 'X':
+                            x_three_streak += 1
+                        elif col > 0 and board[col][row] == 'X':
+                            continue
+                        else:
+                            x_two_streak += 1
+                elif board[col][row + 1] == 'X' and board[col + 1][row + 2] == 'X':
+                    if board[col + 2][row + 3] != 'O' and board[col + 3][row + 4] != 'O':
+                        if board[col + 2][row + 3] == 'X':
+                            x_three_streak += 1
+                        elif col > 0 and board[col][row] == 'X':
+                            continue
+                        else:
+                            x_two_streak += 1
+        #diagonally finds O streaks Topleft to Botright
+        for col in range(len(board) - 3):
+            for row in range(len(board[0]) - 4):
+                if board[col][row] == 'O' and board[col + 1][row + 1] == 'O':
+                    if board[col + 2][row + 2] != 'X' and board[col + 3][row + 3] != 'X':
+                        if board[col + 2][row + 2] == 'O':
+                            o_three_streak += 1
+                        elif col > 0 and board[col][row] == 'O':
+                            continue
+                        else:
+                            o_two_streak += 1
+                elif board[col][row + 1] == 'O' and board[col + 1][row + 2] == 'O':
+                    if board[col + 2][row + 3] != 'X' and board[col + 3][row + 4] != 'X':
+                        if board[col + 2][row + 3] == 'O':
+                            o_three_streak += 1
+                        elif col > 0 and board[col][row] == 'O':
+                            continue
+                        else:
+                            o_two_streak += 1
+
+        #diagonally finds X streaks bottom row to Topright for col 0-1
+        for col in range(0,2):
+            i = len(board[0])
+            for row in range(len(board[0]) - 3):
+                if board[col][i - row - 1] == 'X' and board[col + 1][i - row - 2] == 'X':
+                    if board[col + 2][i - row - 3] != 'O' and board[col + 3][i - row - 4] != 'O':
+                        if board[col + 2][i - row - 2] == 'X':
+                            x_three_streak += 1
+                        elif col > 0 and board[col][i - row - 1] == 'X':
+                            continue
+                        else:
+                            x_two_streak += 1
+        #diagonally finds X streaks bottom row to Topright for col 2
+        for col in range(2,3):
+            i = len(board[0])
+            for row in range(len(board[0]) - 4):
+                if board[col][i - row - 1] == 'X' and board[col + 1][i - row - 2] == 'X':
+                    if board[col + 2][i - row - 3] != 'O' and board[col + 3][i - row - 4] != 'O':
+                        if board[col + 2][i - row - 3] == 'X':
+                            x_three_streak += 1
+                        elif col > 0 and board[col][i - row - 1] == 'X':
+                            continue
+                        else:
+                            x_two_streak += 1
+        #diagonally finds O streaks bottom row to Topright for col 0-1
+        for col in range(0,2):
+            i = len(board[0])
+            for row in range(len(board[0]) - 3):
+                if board[col][i - row - 1] == 'O' and board[col + 1][i - row - 2] == 'O':
+                    if board[col + 2][i - row - 3] != 'X' and board[col + 3][i - row - 4] != 'X':
+                        if board[col + 2][i - row - 2] == 'O':
+                            o_three_streak += 1
+                        elif col > 0 and board[col][i - row - 1] == 'O':
+                            continue
+                        else:
+                            o_two_streak += 1
+        #diagonally finds O streaks bottom row to Topright for col 2
+        for col in range(2,3):
+            i = len(board[0])
+            for row in range(len(board[0]) - 4):
+                if board[col][i - row - 1] == 'O' and board[col + 1][i - row - 2] == 'O':
+                    if board[col + 2][i - row - 3] != 'X' and board[col + 3][i - row - 4] != 'X':
+                        if board[col + 2][i - row - 3] == 'O':
+                            o_three_streak += 1
+                        elif col > 0 and board[col][i - row - 1] == 'O':
+                            continue
+                        else:
+                            o_two_streak += 1
+
+
+
+        #weights 2 in row @ 0.5x, 3 in row @ 1.25x
+        print("Printing streaks:")
+        print("X 2 in a row: " + str(x_two_streak))
+        print("X 3 in a row: " + str(x_three_streak))
+        print("O 2 in a row: " + str(o_two_streak))
+        print("O 3 in a row: " + str(o_three_streak))
+        weighted_x_streaks = (0.5 * x_two_streak) + (x_three_streak * 1.25)
+        weighted_o_streaks = (0.5 * o_two_streak) + (o_three_streak * 1.25)
+        print("X player standings: " + str(weighted_x_streaks))
+        print("O player standings: " + str(weighted_o_streaks))
+        return weighted_x_streaks - weighted_o_streaks
+
 
 def count_streaks(board, symbol):
     count = 0
@@ -197,9 +383,9 @@ def count_streaks(board, symbol):
             count += num_in_streak
     return count
 
-def minimax(input_board, is_maximizing, depth, alpha, beta, eval_function):
+def minimax(input_board, is_maximizing, depth, alpha, beta):
   if game_is_over(input_board) or depth == 0:
-        return [eval_function(input_board), ""]
+        return [evaluate_board(input_board), ""]
   if is_maximizing:
     best_value = -float("Inf")
     moves = available_moves(input_board)
@@ -208,7 +394,7 @@ def minimax(input_board, is_maximizing, depth, alpha, beta, eval_function):
     for move in moves:
       new_board = deepcopy(input_board)
       select_space(new_board, move, "X")
-      hypothetical_value = minimax(new_board, False, depth - 1, alpha, beta, eval_function)[0]
+      hypothetical_value = minimax(new_board, False, depth - 1, alpha, beta)[0]
       if hypothetical_value > best_value:
         best_value = hypothetical_value
         best_move = move
@@ -224,7 +410,7 @@ def minimax(input_board, is_maximizing, depth, alpha, beta, eval_function):
     for move in moves:
       new_board = deepcopy(input_board)
       select_space(new_board, move, "O")
-      hypothetical_value = minimax(new_board, True, depth - 1, alpha, beta, eval_function)[0]
+      hypothetical_value = minimax(new_board, True, depth - 1, alpha, beta)[0]
       if hypothetical_value < best_value:
         best_value = hypothetical_value
         best_move = move
@@ -232,6 +418,7 @@ def minimax(input_board, is_maximizing, depth, alpha, beta, eval_function):
       if alpha >= beta:
         break
     return [best_value, best_move]
+
 
 def play_game(ai):
     BOARDWIDTH = 7
@@ -258,9 +445,35 @@ def play_game(ai):
           result = minimax(board, False, ai, -float("Inf"), float("Inf"))
           print("Computer chose: ", result[1])
           select_space(board, result[1], "O")
+    print_board(board)
+    if has_won(board, "X"):
+        print("X won!")
+    elif has_won(board, "O"):
+        print("O won!")
+    else:
+        print("It's a tie!")
 
-def make_board():
-    new_game = []
-    for x in range(7):
-        new_game.append([' '] * 6)
-    return new_game
+def two_ai_game(ai1, ai2):
+    BOARDWIDTH = 7
+    BOARDHEIGHT = 6
+    my_board = []
+    for x in range(BOARDWIDTH):
+      my_board.append([' '] * BOARDHEIGHT)
+    while not game_is_over(my_board):
+      result = minimax(my_board, True, ai1, -float("Inf"), float("Inf"))
+      print( "X Turn\nX selected ", result[1])
+      print(result[1])
+      select_space(my_board, result[1], "X")
+      print_board(my_board)
+
+      if not game_is_over(my_board):
+        result = minimax(my_board, False, ai2, -float("Inf"), float("Inf"))
+        print( "O Turn\nO selected ", result[1])
+        select_space(my_board, result[1], "O")
+        print_board(my_board)
+    if has_won(my_board, "X"):
+        print("X won!")
+    elif has_won(my_board, "O"):
+        print("O won!")
+    else:
+        print("It's a tie!")
