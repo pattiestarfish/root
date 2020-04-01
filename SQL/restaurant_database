@@ -1,0 +1,51 @@
+nomnom schema:
+1. name - restaurant name
+2. neighborhood - restaurant neighborhood
+3. cuisine type
+4. review - avg user review
+5. price - price range
+6. health - health inspection grade
+
+SELECT * FROM nomnom;
+
+SELECT DISTINCT neighborhood from nomnom;
+
+SELECT DISTINCT cuisine from nomnom;
+
+SELECT * FROM nomnom
+WHERE cuisine = 'Chinese'
+ORDER BY name ASC;
+
+SELECT * FROM nomnom
+where review >= 4
+ORDER BY review DESC;
+
+SELECT * FROM nomnom
+WHERE cuisine = 'Italian' AND price = '$$$' OR price = '$$$$'
+ORDER BY review DESC;
+
+SELECT * FROM nomnom
+WHERE name LIKE '%meatball%';
+
+SELECT * FROM nomnom
+WHERE neighborhood = 'Midtown'
+  OR neighborhood = 'Downtown'
+  OR neighborhood = 'Chinatown';
+
+SELECT * FROM nomnom
+WHERE health is Null;
+
+SELECT * FROM nomnom
+ORDER BY review DESC
+LIMIT 10;
+
+SELECT name,review,
+  CASE
+    WHEN review > 4.5 THEN 'Extraordinary'
+    WHEN review > 4 THEN 'Excellent'
+    WHEN review > 3 THEN 'Good'
+    WHEN review > 2 THEN 'Fair'
+    ELSE 'Poor'
+  END AS 'critique'
+FROM nomnom;
+
