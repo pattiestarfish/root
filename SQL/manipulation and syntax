@@ -1,0 +1,30 @@
+/* Create statements create new tables in databases */
+/* Insert statements insert new rows into tables */
+
+
+/* empty results means database is empty */
+SELECT * FROM celebs;
+
+/* Creating celebs tables */
+/* 3 column table */
+CREATE TABLE celebs(
+    id INTEGER,
+    name TEXT,
+    age INTEGER
+);
+
+INSERT INTO celebs (id, name, age)
+VALUES (1, 'Justin Bieber' , 22);
+
+INSERT INTO celebs (id, name, age)
+VALUES (2, 'Beyonce Knowles', 33);
+
+INSERT INTO celebs (id, name, age)
+VALUES (3, 'Jeremy Lin', 26);
+
+INSERT INTO celebs (id, name, age)
+VALUES (4, 'Taylor Swift', 26);
+
+
+/* selects all columns from table */
+SELECT * FROM celebs;
