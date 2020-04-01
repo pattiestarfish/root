@@ -8,7 +8,7 @@ from copy import deepcopy
 #possible truth table values for OR gate
 #AND gate does not get properly fitted
 data = [[0,0],[0,1],[1,0],[1,1]]
-labels = [0,0,0,1]
+labels = [0,1,1,1]
 class_weight = {0:1, 1:10}
 
 x = [point[0] for point in data]

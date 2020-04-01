@@ -1,5 +1,20 @@
-/* Create statements create new tables in databases */
-/* Insert statements insert new rows into tables */
+/* CREATE statements create new tables in databases */
+/* INSERT statements insert new rows into tables */
+/* ALTER statements adds new columns to tables */
+/* UPDATE statements edits rows in tables */
+/* DELETE statements deletes entire row(s) in tables */
+/* constraints add guidelines (use while creating tables) */
+
+#summary
+SELECT is the clause we use every time we want to query information from a database.
+AS renames a column or table.
+DISTINCT return unique values.
+WHERE is a popular command that lets you filter the results of the query based on conditions that you specify.
+LIKE and BETWEEN are special operators.
+AND and OR combines multiple conditions.
+ORDER BY sorts the result.
+LIMIT specifies the maximum number of rows that the query will return.
+CASE creates different outputs.
 
 
 /* empty results means database is empty */
@@ -26,5 +41,50 @@ INSERT INTO celebs (id, name, age)
 VALUES (4, 'Taylor Swift', 26);
 
 
-/* selects all columns from table */
+/* selects and displays all columns from table */
 SELECT * FROM celebs;
+
+ALTER TABLE celebs
+ADD COLUMN twitter_handle TEXT;
+
+UPDATE celebs
+SET twitter_handle = '@taylorswift13'
+WHERE id = 4;
+
+DELETE FROM celebs
+WHERE twitter_handle IS NULL;
+
+SELECT * FROM celebs;
+
+CREATE TABLE awards (
+   id INTEGER PRIMARY KEY,
+   recipient TEXT NOT NULL,
+   award_name TEXT DEFAULT 'Grammy'
+);
+
+#-----------------------------
+CREATE TABLE awards(
+   id INTEGER PRIMARY KEY,
+   recipient TEXT NOT NULL,
+   award_name TEXT DEFAULT 'Grammy'
+);
+
+CREATE TABLE celebss(
+  name TEXT,
+  age INTEGER
+);
+
+INSERT INTO celebss (name, age)
+VALUES ('Jeremy', 22);
+
+SELECT name FROM celebss;
+
+#--------------------------------
+SELECT name,
+  CASE
+    WHEN genre = 'romance' THEN 'Chill'
+    WHEN genre = 'comedy' THEN 'Chill'
+    ELSE 'Intense'
+  END AS 'Mood'
+FROM movies;
+
