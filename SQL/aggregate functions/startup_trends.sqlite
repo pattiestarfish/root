@@ -1,0 +1,38 @@
+SELECT *
+FROM startups;
+
+SELECT DISTINCT COUNT(*)
+FROM startups;
+
+SELECT SUM(valuation)
+FROM startups;
+
+SELECT name,
+  MAX(raised)
+FROM startups
+WHERE stage = 'Seed';
+
+SELECT name, MIN(founded)
+FROM startups;
+
+SELECT category, name, ROUND(AVG(valuation), 2)
+FROM startups
+GROUP BY 1
+ORDER BY 3 DESC;
+
+SELECT category,
+  COUNT(*)
+FROM startups
+GROUP BY 1
+HAVING COUNT(*) > 3;
+
+SELECT location, AVG(employees)
+FROM startups
+GROUP BY 1
+ORDER BY 1;
+
+SELECT location, AVG(employees)
+FROM startups
+GROUP BY 1
+HAVING AVG(employees) > 500
+ORDER BY 1;
