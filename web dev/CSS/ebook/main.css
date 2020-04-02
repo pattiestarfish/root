@@ -1,0 +1,58 @@
+/* CSS composed of rules and selectors
+rule: list of CSS instructions for style of specific HTML element(s)
+selector: specifies which HTML elements to style ie. h1, h3
+properties and values: located within {}, specific which aspect to style
+font-family: input intended font and fallback font
+colors: 140 named colors (red), or hexadecial #RRGGBB #FF0000 and RGB values rgb(128,0,128)=purple
+class selectors are identified with a dot followed by class
+font-size: size can be assigned in pixels(px), rems, or ems; 1rem = 16px
+- pixels are standard units of measurement; rems represent default font size for web browser, scale in proportion
+
+CSS id selectors: create rule for id selectors using #
+- id attr can only be used once since id is unique to elements
+- ids have greater specificity than classes; if HTML element uses both id and class attr, CSS rule for id takes precedence
+*/
+
+body {
+	height: 100%;
+	margin: 0;
+	text-align: center;
+	width: 100%;
+}
+
+h1 {
+  font-size: 32px;
+  font-family: Palatino, 'Palatino Linotype', serif;
+  color: #2e69a3;
+}
+
+h2 {
+	font-size: 56px;
+  color: rgb(216,218,190);
+}
+
+
+.hero {
+	padding: 250px 0;
+	margin: 30px;
+  color: #ffffff;
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  background-image: url("https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-2/bg.jpg");
+  background-size: cover;
+}
+
+#footer {
+  font-size: 0.75rem;
+}
+
+p {
+  font-size: 2rem;
+}
+
+.hero a {
+	color: #00FFAA;
+	font-size: 1.25em;
+	text-decoration: none;
+}
+
+
