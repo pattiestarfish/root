@@ -1,0 +1,103 @@
+/* Important aspect of styling consists of organizing boundaries and space
+Box Model
+1. Content: includes text, images, and other media contained within HTML element
+2. Padding: space between content and border, inner space
+3. Border: Outline of HTML page element; similar to picture frame; consists of 3 parts-
+    a. thickness: set thickness of borders using pixels, ems, or rems
+    b. type: set border type, commonly solid, dotted, daashed, etc..
+    c. set border color using named colors, HEX, or RGB
+4. Margin: Space between HTML page element and next nearest element
+    a. can change margin-top, margin-left, etc
+
+Display aspects: display and position properties allow movement of CSS elements
+    a. block display places 1 element each row, with empty space to the right
+    b. inline display lines up elements with neighboring elements
+    c. float property allows elements to float left or right
+    d. flex can align multiple page elements (children) horizontally (use flex wrap to ensure elements stay on page)
+    e. Position: relative, left, bottom, right
+*/
+html, body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-image: url('https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-3/background.jpg');
+  background-position: center top;
+  background-size: cover;
+  margin: 0;
+}
+
+a {
+  color: #204156;
+  text-decoration: none;
+}
+
+.page-title {
+  text-align: center;
+  font-weight: 100;
+}
+
+.page-description {
+  border: 1px solid #000;
+  margin: 2px;
+  text-align: center;
+  padding: 30px;
+}
+
+.gallery {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gallery-item {
+  margin: 20px;
+}
+
+.gallery-item .thumbnail {
+  border: 5px solid #fff;
+}
+
+/* FOOTER NAVIGATION */
+nav {
+  background-color: #FFF;
+}
+
+nav li {
+  display: inline;
+  margin: 0;
+  padding: 0 10px;
+}
+
+nav ul {
+  display: inline;
+}
+
+.contact-btn {
+  float: right;
+}
+
+.contact-btn a {
+  cursor: pointer;
+  margin-right: 30px;
+  padding: 8px 18px;
+  border: 1px solid #204156;
+  position: relative;
+}
+
+.contact-btn a:active {
+  top: 2px;
+}
+
+nav a {
+  height: 60px;
+  line-height: 60px;
+  color: #204156;
+  text-decoration: none;
+}
