@@ -1,0 +1,29 @@
+SELECT *
+FROM transactions;
+
+SELECT SUM(money_in)
+FROM transactions;
+
+SELECT SUM(money_out)
+FROM transactions;
+
+SELECT COUNT(money_in)
+FROM transactions;
+
+SELECT COUNT(money_in)
+FROM transactions
+WHERE currency='BIT';
+
+SELECT MAX(money_in),
+  MAX(money_out)
+FROM transactions;
+
+SELECT AVG(money_in) AS "ETH AVG"
+FROM transactions
+WHERE currency='ETH';
+
+SELECT date AS 'TRANSACTION DATE',
+  ROUND(AVG(money_in), 2) AS 'AVG MONEY IN',
+  ROUND(AVG(money_out), 2) AS "AVG MONEY OUT"
+FROM transactions
+GROUP BY 1;

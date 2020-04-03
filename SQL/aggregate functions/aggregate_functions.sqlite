@@ -35,3 +35,48 @@ SELECT price,
 FROM fake_apps
 GROUP by price
 HAVING COUNT(*) > 10;
+
+SELECT COUNT(*)
+FROM users
+WHERE email LIKE "%.com";
+
+SELECT first_name, COUNT(1)
+FROM users
+GROUP BY 1
+ORDER BY COUNT(1) DESC;
+
+SELECT
+  ROUND(watch_duration_in_minutes,0) as 'duration',
+  COUNT(*) as 'count'
+FROM watch_history
+GROUP BY duration
+ORDER BY duration ASC;
+
+SELECT user_id, SUM(amount)
+FROM payments
+WHERE pay_date IS NOT NULL
+  AND status = 'paid'
+GROUP BY 1
+ORDER BY 2 DESC;
+
+SELECT user_id, SUM(watch_duration_in_minutes)
+FROM watch_history
+GROUP BY user_id
+HAVING SUM(watch_duration_in_minutes) > 400;
+
+SELECT ROUND(SUM(watch_duration_in_minutes), 0)
+FROM watch_history;
+
+SELECT pay_date, SUM(amount)
+FROM payments
+WHERE status='paid'
+GROUP BY 1
+ORDER BY 2 DESC;
+
+SELECT AVG(amount)
+FROM payments
+WHERE status='paid';
+
+SELECT MAX(watch_duration_in_minutes) AS 'max',
+  MIN(watch_duration_in_minutes) AS 'min'
+FROM watch_history;

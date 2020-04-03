@@ -1,0 +1,57 @@
+The babies table has the following columns:
+name - the name of the baby
+year - the year the name was given
+gender - the gender of the baby
+number - the number of times the name was given
+----------------------------------------------
+SELECT year, number
+FROM babies
+WHERE name="Pat"
+GROUP BY year;
+
+SELECT DISTINCT name
+FROM babies
+WHERE name LIKE "S%"
+ORDER BY name ASC
+LIMIT 20;
+
+SELECT name, gender, number
+FROM babies
+WHERE year = '1880'
+ORDER BY number DESC
+LIMIT 10;
+---------------------------------------------
+The nomnom table has the following columns:
+name - the restaurant name
+neighborhood - the neighborhood name
+cuisine - the cuisine type
+review - the average user review
+price - the price range
+health - the health inspection grade
+
+SELECT *
+FROM nomnom
+WHERE cuisine = "Japanese"
+   AND price="$$";
+
+SELECT *
+FROM nomnom
+WHERE name LIKE "%noodle%";
+
+SELECT *
+FROM nomnom
+WHERE health IS NULL;
+
+SELECT title,publisher
+FROM news
+ORDER BY title ASC;
+
+SELECT *
+FROM news
+WHERE title LIKE '%bitcoin%';
+
+SELECT *
+FROM news
+WHERE category = 'b'
+ORDER BY timestamp DESC
+LIMIT 20;
