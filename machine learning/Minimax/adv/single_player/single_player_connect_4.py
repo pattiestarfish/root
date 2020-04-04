@@ -1,3 +1,3 @@
 from connect_four import *
 
-play_game(6)
+play_game(5)

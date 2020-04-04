@@ -478,5 +478,4 @@ def two_ai_game(ai1, ai2):
     else:
         print("It's a tie!")
 
-#--------------------------------
-
+#two_ai_game(4,2)
