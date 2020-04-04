@@ -1,0 +1,87 @@
+-- Quiz/survey funnel
+SELECT question,
+  COUNT(DISTINCT user_id) AS 'responses'
+FROM survey
+GROUP BY question;
+
+--Viewing data types
+SELECT *
+FROM quiz
+LIMIT 5;
+
+SELECT *
+FROM home_try_on
+LIMIT 5;
+
+SELECT *
+FROM purchase
+LIMIT 5;
+
+--Finding popular quiz answers
+SELECT style AS 'frame style',
+  COUNT(DISTINCT user_id)
+FROM quiz
+GROUP BY 1;
+
+SELECT fit AS 'face fit',
+  COUNT(DISTINCT user_id)
+FROM quiz
+GROUP BY 1;
+
+SELECT shape AS 'lens shape',
+  COUNT(DISTINCT user_id)
+FROM quiz
+GROUP BY 1;
+
+SELECT color AS 'frame color',
+  COUNT(DISTINCT user_id)
+FROM quiz
+GROUP BY 1;
+
+--Viewing 10 rows
+WITH purchase_funnel AS(
+  SELECT DISTINCT q.user_id,
+    h.number_of_pairs IS NOT NULL AS "is_home_try_on",
+    h.number_of_pairs,
+    p.user_id IS NOT NULL AS "is_purchase"
+  FROM quiz AS "q"
+  LEFT JOIN home_try_on AS "h"
+    ON q.user_id = h.user_id
+  LEFT JOIN purchase AS "p"
+    ON p.user_id = q.user_id)
+SELECT *
+FROM purchase_funnel
+LIMIT 10;
+
+--Finding conversion rate for quiz --> home try on --> purchase
+WITH purchase_funnel AS(
+  SELECT DISTINCT q.user_id,
+    h.number_of_pairs IS NOT NULL AS "is_home_try_on",
+    h.number_of_pairs,
+    p.user_id IS NOT NULL AS "is_purchase"
+  FROM quiz AS "q"
+  LEFT JOIN home_try_on AS "h"
+    ON q.user_id = h.user_id
+  LEFT JOIN purchase AS "p"
+    ON p.user_id = q.user_id)
+SELECT COUNT(user_id) AS 'all customers',
+  1.0 * SUM(is_home_try_on)/COUNT(user_id) AS 'quiz to trial',
+  1.0 * SUM(is_purchase)/SUM(is_home_try_on) AS 'trial to purchase',
+  1.0 * SUM(is_purchase)/COUNT(user_id) AS 'general conversion rate'
+FROM purchase_funnel;
+
+--Finding conversion rate for 3 pairs vs 5 pairs during home try on
+WITH purchase_funnel AS(
+  SELECT DISTINCT q.user_id,
+    h.number_of_pairs IS NOT NULL AS "is_home_try_on",
+    h.number_of_pairs,
+    p.user_id IS NOT NULL AS "is_purchase"
+  FROM quiz AS "q"
+  LEFT JOIN home_try_on AS "h"
+    ON q.user_id = h.user_id
+  LEFT JOIN purchase AS "p"
+    ON p.user_id = q.user_id)
+SELECT number_of_pairs AS 'number of pairs tried',
+  1.0 * SUM(is_purchase)/COUNT(DISTINCT user_id) AS 'purchase rate'
+FROM purchase_funnel
+GROUP BY number_of_pairs;

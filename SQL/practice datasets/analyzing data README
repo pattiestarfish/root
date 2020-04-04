@@ -1,1 +1,6 @@
-1. Usage funnels
+1. Usage funnels: marketing model that illustrates theoretical customer journey towards purchase of products/services
+Examples: 5 part question surveys for customer satisfaction, browsing products/making purchase, progress through modules
+
+2. Churning: Churn rate defined as cancellations/total subscribers
+- for user bases to grow, churn rate must be < new subscriber rate
+- consider users subscribed at beginning of month, and count those who cancel during monthSELECT 450/
