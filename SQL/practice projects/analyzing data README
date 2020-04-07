@@ -1,0 +1,18 @@
+1. Usage funnels: marketing model that illustrates theoretical customer journey towards purchase of products/services
+Examples: 5 part question surveys for customer satisfaction, browsing products/making purchase, progress through modules
+
+2. Churning: Churn rate defined as cancellations/total subscribers
+- for user bases to grow, churn rate must be < new subscriber rate
+- consider users subscribed at beginning of month, and count those who cancel during month
+
+3. First and last touch attribution
+Urchin Tracking Module (UTM) parameters- capture when and how users access a website
+Special links containing UTM parameters in ads, blogs, etc are added to database when respective links are clicked
+
+Common schemas:
+user_id - A unique identifier for each visitor to a page
+timestamp - The time at which the visitor came to the page
+page_name - The title of the section of the page that was visited
+utm_source - Identifies which touchpoint sent the traffic (e.g. google, email, or facebook)
+utm_medium - Identifies what type of link was used (e.g. cost-per-click or email)
+utm_campaign - Identifies the specific ad or email blast (e.g. retargetting-ad or weekly-newsletter)
