@@ -5,12 +5,20 @@ body {
 
 header {
   padding: 20px 0;
+  background: #ADD8E6;
+  width 100%;
 }
 
-header .row,
 footer .row {
   display: flex;
   align-items: center;
+}
+
+header .row{
+  display: flex;
+  align-items: center;
+  background: #ADD8E6;
+  width 100%;
 }
 
 h1 {
@@ -38,16 +46,29 @@ a {
 }
 
 .jumbotron h2 {
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 700;
   margin: 0;
   color: #fff;
+  background: #B0C4DE;
 }
 
+.jumbotron h4 {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+  background: #98FB98;
+  margin-top: 30px;
+  margin-left 15px;
+}
+
+
 .jumbotron h3 {
-  margin: 0 0 20px;
+  margin: 0 0 12px;
   color: #fff;
 }
+
 
 section .row img {
   margin: 0 0 30px;
